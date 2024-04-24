@@ -8,7 +8,7 @@ using Kavenegar.Infrastructure.Repositories.Common;
 
 namespace Kavenegar.Infrastructure
 {
-    public static class PersistenceServicesRegistration
+    public static class InfrastructureServicesRegistration
     {
         public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
