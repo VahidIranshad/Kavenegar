@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "presentation", "presentation", "{71C1C315-176B-4F92-9E0D-BB8063C44C48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kavenegar.Domain", "src\core\Kavenegar.Domain\Kavenegar.Domain.csproj", "{B8FB82EB-07EA-4D64-A5BB-A6E17FCFF5A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kavenegar.Domain", "src\core\Kavenegar.Domain\Kavenegar.Domain.csproj", "{B8FB82EB-07EA-4D64-A5BB-A6E17FCFF5A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kavenegar.Application", "src\core\Kavenegar.Application\Kavenegar.Application.csproj", "{78B4C9C3-7C65-4F2B-8D70-1695719A6D4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kavenegar.Application", "src\core\Kavenegar.Application\Kavenegar.Application.csproj", "{78B4C9C3-7C65-4F2B-8D70-1695719A6D4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kavenegar.Infrastructure", "src\infrastructure\Kavenegar.Infrastructure\Kavenegar.Infrastructure.csproj", "{E9AFCE65-8B41-4B20-8C2F-3D359734FBE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kavenegar.Infrastructure", "src\infrastructure\Kavenegar.Infrastructure\Kavenegar.Infrastructure.csproj", "{E9AFCE65-8B41-4B20-8C2F-3D359734FBE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kavenegar.API", "src\presentation\Kavenegar.API\Kavenegar.API.csproj", "{11D3DD89-851F-4089-827D-9169D6E31542}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kavenegar.API", "src\presentation\Kavenegar.API\Kavenegar.API.csproj", "{58D5B1F3-AC5D-4EBE-9318-A306F0D5F041}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{E9AFCE65-8B41-4B20-8C2F-3D359734FBE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9AFCE65-8B41-4B20-8C2F-3D359734FBE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9AFCE65-8B41-4B20-8C2F-3D359734FBE7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{11D3DD89-851F-4089-827D-9169D6E31542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11D3DD89-851F-4089-827D-9169D6E31542}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11D3DD89-851F-4089-827D-9169D6E31542}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11D3DD89-851F-4089-827D-9169D6E31542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58D5B1F3-AC5D-4EBE-9318-A306F0D5F041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D5B1F3-AC5D-4EBE-9318-A306F0D5F041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D5B1F3-AC5D-4EBE-9318-A306F0D5F041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D5B1F3-AC5D-4EBE-9318-A306F0D5F041}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,7 +47,7 @@ Global
 		{B8FB82EB-07EA-4D64-A5BB-A6E17FCFF5A5} = {DC219B24-191E-4D3D-9245-25152D253795}
 		{78B4C9C3-7C65-4F2B-8D70-1695719A6D4B} = {DC219B24-191E-4D3D-9245-25152D253795}
 		{E9AFCE65-8B41-4B20-8C2F-3D359734FBE7} = {8645CE47-C0F8-405D-8B74-076DFD300D18}
-		{11D3DD89-851F-4089-827D-9169D6E31542} = {71C1C315-176B-4F92-9E0D-BB8063C44C48}
+		{58D5B1F3-AC5D-4EBE-9318-A306F0D5F041} = {71C1C315-176B-4F92-9E0D-BB8063C44C48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FB439C8-03F5-4379-82F6-5AA03850B974}

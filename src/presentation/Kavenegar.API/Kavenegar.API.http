@@ -1,0 +1,6 @@
+@Kavenegar.API_HostAddress = http://localhost:5278
+
+GET {{Kavenegar.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
