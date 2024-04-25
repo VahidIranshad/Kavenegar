@@ -3,6 +3,7 @@ using FluentValidation;
 using Kavenegar.Application.BuildingBlocks.CQRS;
 using Kavenegar.Application.Contracts.Base;
 using Kavenegar.Application.Dto.Entity.BlogDtos;
+using Kavenegar.Application.Exceptions;
 using Kavenegar.Domain.Entity;
 using MediatR;
 
@@ -36,8 +37,13 @@ namespace Kavenegar.Application.Features.BlogFeatures.Command.Update
                 }
             }
 
+            var data = await _unitOfWork.Repository().Get(request.blogCrudDto.Id);
+            if (data == null)
+            {
+                throw new NotFoundException(nameof(BLog), request.blogCrudDto.Id);
+            }
 
-            var data = _mapper.Map<BLog>(request.blogCrudDto);
+            data = _mapper.Map<BLog>(request.blogCrudDto);
 
             await _unitOfWork.Repository().Update(data);
             await _unitOfWork.SaveChangesAsync(_currentUserService);

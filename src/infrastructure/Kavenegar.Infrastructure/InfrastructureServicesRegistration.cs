@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Kavenegar.Application.Contracts.Base;
 using Kavenegar.Infrastructure.DbContexts;
 using Kavenegar.Infrastructure.Repositories.Common;
+using Kavenegar.Application.Contracts.Entity;
+using Kavenegar.Infrastructure.Repositories.Entity;
 
 namespace Kavenegar.Infrastructure
 {
@@ -18,6 +20,8 @@ namespace Kavenegar.Infrastructure
                );
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+            services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

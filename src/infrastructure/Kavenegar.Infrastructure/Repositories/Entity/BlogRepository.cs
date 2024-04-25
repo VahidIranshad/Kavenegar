@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Kavenegar.Application.Contracts.Entity;
+using Kavenegar.Domain.Entity;
+using Kavenegar.Infrastructure.DbContexts;
+using Kavenegar.Infrastructure.Repositories.Common;
 
 namespace Kavenegar.Infrastructure.Repositories.Entity
 {
-    internal class BlogRepository
+    public class BlogRepository : GenericRepository<BLog>, IBlogRepository
     {
+        public BlogRepository(KavenegarDbContext dbContext) : base(dbContext)
+        {
+        }
     }
 }

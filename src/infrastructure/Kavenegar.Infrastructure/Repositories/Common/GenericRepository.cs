@@ -39,7 +39,7 @@ namespace Kavenegar.Infrastructure.Repositories.Common
 
         public async Task<T> Get(int id)
         {
-            var data = await _dbContext.Set<T>().IgnoreQueryFilters().FirstOrDefaultAsync( p => p.Id == id);
+            var data = await _dbContext.Set<T>().IgnoreQueryFilters().FirstOrDefaultAsync(p => p.Id == id);
             if (data != null)
             {
                 return data;
@@ -54,36 +54,16 @@ namespace Kavenegar.Infrastructure.Repositories.Common
             return entity;
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(T entity)
         {
-            var data = await _dbContext.Set<T>().FindAsync(id);
-            if (data != null)
-            {
-                _dbContext.Entry(data).State = EntityState.Deleted;
-                //_dbContext.Set<T>().Remove(data);
-                return;
-            }
+            _dbContext.Entry(entity).State = EntityState.Deleted;
         }
 
         public async Task Update(T entity)
         {
-            var data = await _dbContext.Set<T>().IgnoreQueryFilters().AsNoTracking().Where(p => p.Id == entity.Id).FirstOrDefaultAsync();
-            //var data = await _dbContext.Set<T>().FindAsync(entity.Id);
-            if (data != null)
-            {
-                _dbContext.Entry(entity).State = EntityState.Modified;
-
-            }
-            else
-            {
-                throw new NotFoundException(nameof(T), entity.Id);
-            }
-        }
-        public async Task SaveChangesAsync(ICurrentUserService currentUserService)
-        {
-            await _dbContext.SaveChangesAsync(currentUserService);
+            _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
-        
+
     }
 }

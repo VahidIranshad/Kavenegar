@@ -1,4 +1,6 @@
-﻿using Kavenegar.Application.Behaviors;
+﻿using FluentValidation;
+using Kavenegar.Application.Behaviors;
+using Kavenegar.Application.Dto.Entity.BlogDtos;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -15,6 +17,7 @@ namespace Kavenegar.Application
                 config.AddOpenBehavior(typeof(LoggingBehavior<,>));
             });
 
+            services.AddTransient<IValidator<BlogCrudDto>, BlogCrudDtoValidator>();
 
             return services;
         }

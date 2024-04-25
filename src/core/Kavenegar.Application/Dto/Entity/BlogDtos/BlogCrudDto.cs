@@ -9,9 +9,9 @@ namespace Kavenegar.Application.Dto.Entity.BlogDtos
         public required string Content { get; set; }
     }
 
-    public class BlogDtoCrudValidator : AbstractValidator<BlogCrudDto>
+    public class BlogCrudDtoValidator : AbstractValidator<BlogCrudDto>
     {
-        public BlogDtoCrudValidator()
+        public BlogCrudDtoValidator()
         {
             RuleFor(p => p.Title)
                 .NotEmpty().WithMessage("{PropertyName} is required.")

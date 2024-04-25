@@ -1,4 +1,5 @@
 ﻿using Kavenegar.Application.Contracts.Base;
+using Kavenegar.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kavenegar.Infrastructure.DbContexts
@@ -32,6 +33,7 @@ namespace Kavenegar.Infrastructure.DbContexts
                 throw exp;
             }
         }
+        public DbSet<BLog> BLogDbSet { get; set; }
 
     }
 }
