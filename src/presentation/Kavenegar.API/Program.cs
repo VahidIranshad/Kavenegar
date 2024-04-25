@@ -1,15 +1,22 @@
+using Kavenegar.Application.Contracts.Entity;
+using Kavenegar.Domain.Base;
+using Kavenegar.Infrastructure.Repositories.Entity;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
+ConfigurationManager configuration = builder.Configuration;
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+/*because of Scrutor.AspNetCore we add IBlogRepository here*/
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.Decorate<IBlogRepository, CachedRepository>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
