@@ -9,8 +9,8 @@ namespace Kavenegar.Infrastructure.Repositories.Common
     public class CacheService : ICacheService
     {
         private IDatabase _db;
-        private readonly ConnectionHelper _connectionHelper;
-        public CacheService(ConnectionHelper connectionHelper)
+        private readonly RedisConnectionHelper _connectionHelper;
+        public CacheService(RedisConnectionHelper connectionHelper)
         {
             _connectionHelper = connectionHelper;
             _db = connectionHelper.Connection.GetDatabase();

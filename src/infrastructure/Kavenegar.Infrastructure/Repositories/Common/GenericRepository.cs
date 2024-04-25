@@ -39,12 +39,12 @@ namespace Kavenegar.Infrastructure.Repositories.Common
 
         public async Task<T> Get(int id)
         {
-            var data = await _dbContext.Set<T>().IgnoreQueryFilters().FirstOrDefaultAsync(p => p.Id == id);
+            var data = await _dbContext.Set<T>().FirstOrDefaultAsync(p => p.Id == id);
             if (data != null)
             {
                 return data;
             }
-            throw new NotFoundException(nameof(T), id);
+            throw new NotFoundException(typeof(T).Name, id);
         }
 
 

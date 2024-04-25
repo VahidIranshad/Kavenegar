@@ -1,10 +1,13 @@
 ﻿using FluentValidation;
+using System.ComponentModel;
 
 namespace Kavenegar.Application.Dto.Entity.BlogDtos
 {
     public class BlogCrudDto
     {
         public int Id { get; set; }
+        [DefaultValue(Domain.Const.UserConst.Admin_Id)]
+        public int AuthorId { get; set; }
         public required string Title { get; set; }
         public required string Content { get; set; }
     }
@@ -17,7 +20,7 @@ namespace Kavenegar.Application.Dto.Entity.BlogDtos
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .MaximumLength(800).WithMessage("{PropertyName} must not exceed 800 characters.");
             RuleFor(p => p.Content)
-                .MaximumLength(8000).WithMessage("{PropertyName} must not exceed 8000 characters.");
+                .MaximumLength(4000).WithMessage("{PropertyName} must not exceed 4000 characters.");
 
         }
     }

@@ -12,7 +12,14 @@ namespace Kavenegar.Infrastructure.Configurations.Entity
             builder.HasKey(p => p.Id).HasName("PK_Entity_User");
             builder.Property(p => p.Id).UseIdentityColumn();
             builder.Property(p => p.Name).IsRequired().HasColumnType("nvarchar").HasMaxLength(800);
-            builder.Property<byte[]>("Version").IsRowVersion();
+            builder.Property<byte[]>("Version").IsRowVersion(); 
+            builder.HasData(
+                 new User
+                 {
+                     Id = Domain.Const.UserConst.Admin_Id,
+                     Name = Domain.Const.UserConst.Admin_Name,
+                 }
+            );
 
         }
     }

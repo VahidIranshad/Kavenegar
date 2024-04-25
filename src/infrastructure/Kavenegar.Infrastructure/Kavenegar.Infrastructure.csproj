@@ -26,5 +26,9 @@
     <ProjectReference Include="..\..\core\Kavenegar.Application\Kavenegar.Application.csproj" />
     <ProjectReference Include="..\..\core\Kavenegar.Domain\Kavenegar.Domain.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 
 </Project>

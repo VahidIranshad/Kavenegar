@@ -5,12 +5,12 @@ using System.Linq.Expressions;
 
 namespace Kavenegar.Infrastructure.Repositories.Entity
 {
-    public class CachedRepository : IBlogRepository
+    public class CachedBlogRepository : IBlogRepository
     {
         public readonly ICacheService _cacheService;
         public IBlogRepository _decorated;
 
-        public CachedRepository(ICacheService cacheService, IBlogRepository decorated)
+        public CachedBlogRepository(ICacheService cacheService, IBlogRepository decorated)
         {
             _cacheService = cacheService;
             _decorated = decorated;

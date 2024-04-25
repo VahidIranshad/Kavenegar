@@ -43,7 +43,8 @@ namespace Kavenegar.Application.Features.BlogFeatures.Command.Update
                 throw new NotFoundException(nameof(BLog), request.blogCrudDto.Id);
             }
 
-            data = _mapper.Map<BLog>(request.blogCrudDto);
+            //var data = _mapper.Map<BLog>(request.blogCrudDto);
+            _mapper.Map(request.blogCrudDto, data);
 
             await _unitOfWork.Repository().Update(data);
             await _unitOfWork.SaveChangesAsync(_currentUserService);

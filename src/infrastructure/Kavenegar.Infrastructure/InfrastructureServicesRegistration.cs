@@ -13,7 +13,7 @@ namespace Kavenegar.Infrastructure
 {
     public static class InfrastructureServicesRegistration
     {
-        public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection ConfigureInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<KavenegarDbContext>(options =>
                options.UseSqlServer(configuration.GetConnectionString("KavenegarConnectionStrings")),
@@ -23,7 +23,7 @@ namespace Kavenegar.Infrastructure
             services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddSingleton<ConnectionHelper>();
+            services.AddSingleton<RedisConnectionHelper>();
 
             return services;
         }

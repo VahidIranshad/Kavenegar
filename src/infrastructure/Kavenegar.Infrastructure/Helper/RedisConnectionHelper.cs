@@ -4,12 +4,12 @@ using StackExchange.Redis;
 
 namespace Kavenegar.Infrastructure.Helper
 {
-    public class ConnectionHelper
+    public class RedisConnectionHelper
     {
         private readonly AppSettings _appSettings;
         private readonly Lazy<ConnectionMultiplexer> lazyConnection;
 
-        public ConnectionHelper(IOptions<AppSettings> appSettings)
+        public RedisConnectionHelper(IOptions<AppSettings> appSettings)
         {
             _appSettings = appSettings.Value;
             lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
