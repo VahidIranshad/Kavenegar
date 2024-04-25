@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-using Kavenegar.Application.Behaviors;
-using MediatR;
+﻿using Kavenegar.Application.Behaviors;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -11,10 +9,8 @@ namespace Kavenegar.Application
         public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            //services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddMediatR(config =>
             {
-                //config.piple
                 config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
                 config.AddOpenBehavior(typeof(LoggingBehavior<,>));
             });

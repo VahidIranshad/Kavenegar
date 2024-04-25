@@ -14,6 +14,6 @@ namespace Kavenegar.Application.Contracts.Base
         Task<int> CommitAndRemoveCache(CancellationToken cancellationToken, params string[] cacheKeys);
 
         Task Rollback();
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        Task<int> SaveChangesAsync(ICurrentUserService currentUserService);
     }
 }

@@ -79,9 +79,9 @@ namespace Kavenegar.Infrastructure.Repositories.Common
                 throw new NotFoundException(nameof(T), entity.Id);
             }
         }
-        public async Task SaveChangesAsync()
+        public async Task SaveChangesAsync(ICurrentUserService currentUserService)
         {
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(currentUserService);
         }
 
         

@@ -13,6 +13,6 @@ namespace Kavenegar.Application.Contracts.Base
         Task<bool> Exists(int id);
         Task Update(T entity);
         Task Delete(int id);
-        Task SaveChangesAsync();
+        Task SaveChangesAsync(ICurrentUserService currentUserService);
     }
 }

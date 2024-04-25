@@ -46,10 +46,6 @@ namespace Kavenegar.Infrastructure.Repositories.Common
         public async Task<int> CommitAndRemoveCache(CancellationToken cancellationToken, params string[] cacheKeys)
         {
             var result = await _context.SaveChangesAsync(cancellationToken);
-            foreach (var cacheKey in cacheKeys)
-            {
-                //_cache.Remove(cacheKey);
-            }
             return result;
         }
 
@@ -65,10 +61,10 @@ namespace Kavenegar.Infrastructure.Repositories.Common
         }
 
 
-        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        public async Task<int> SaveChangesAsync(ICurrentUserService currentUserService)
         {
 
-            return await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync(currentUserService);
         }
 
     }
