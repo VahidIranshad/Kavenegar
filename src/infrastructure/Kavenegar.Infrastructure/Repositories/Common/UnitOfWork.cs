@@ -24,12 +24,6 @@ namespace Kavenegar.Infrastructure.Repositories.Common
             return await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<int> CommitAndRemoveCache(CancellationToken cancellationToken, params string[] cacheKeys)
-        {
-            var result = await _context.SaveChangesAsync(cancellationToken);
-            return result;
-        }
-
         public Task Rollback()
         {
             _context.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
