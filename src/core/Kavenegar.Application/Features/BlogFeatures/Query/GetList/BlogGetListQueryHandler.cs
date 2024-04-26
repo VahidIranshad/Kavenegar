@@ -10,12 +10,12 @@ namespace Kavenegar.Application.Features.BlogFeatures.Query.GetList
     public class BlogGetListQueryHandler : IQueryHandler<BlogGetListQuery, IList<BlogDto>>
     {
 
-        public readonly IUnitOfWork<BLog> _unitOfWork;
+        public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
         private readonly IBlogRepository _blogRepository;
 
 
-        public BlogGetListQueryHandler(IUnitOfWork<BLog> unitOfWork, IMapper mapper, IBlogRepository blogRepository)
+        public BlogGetListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, IBlogRepository blogRepository)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

@@ -10,13 +10,13 @@ namespace Kavenegar.Application.Features.BlogFeatures.Command.Create
 {
     public class BlogCreateCommandHandler : ICommandHandler<BlogCreateCommand, BlogDto>
     {
-        private readonly IUnitOfWork<BLog> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ICurrentUserService _currentUserService;
         private readonly IValidator<BlogCrudDto> _validator;
         private readonly IBlogRepository _blogRepository;
 
-        public BlogCreateCommandHandler(IUnitOfWork<BLog> unitOfWork, 
+        public BlogCreateCommandHandler(IUnitOfWork unitOfWork, 
             IMapper mapper, 
             ICurrentUserService currentUserService, 
             IValidator<BlogCrudDto> validator,

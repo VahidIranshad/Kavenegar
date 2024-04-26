@@ -35,6 +35,7 @@ namespace Kavenegar.Infrastructure.DbContexts
             }
         }
         public DbSet<BLog> BLogDbSet { get; set; }
+        public DbSet<User> UserDbSet { get; set; }
 
     }
 }

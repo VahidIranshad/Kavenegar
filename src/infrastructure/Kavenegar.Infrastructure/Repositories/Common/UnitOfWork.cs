@@ -6,8 +6,7 @@ using System.Collections;
 namespace Kavenegar.Infrastructure.Repositories.Common
 {
 
-    public class UnitOfWork<T> : IUnitOfWork<T>
-        where T : BaseEntity
+    public class UnitOfWork : IUnitOfWork
     {
 
         private readonly KavenegarDbContext _context;

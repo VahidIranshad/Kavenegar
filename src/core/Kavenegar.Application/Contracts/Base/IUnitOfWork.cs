@@ -1,10 +1,7 @@
-﻿using Kavenegar.Domain.Base;
-
-namespace Kavenegar.Application.Contracts.Base
+﻿namespace Kavenegar.Application.Contracts.Base
 {
 
-    public interface IUnitOfWork<T> : IDisposable
-        where T : BaseEntity
+    public interface IUnitOfWork : IDisposable
     {
 
         Task<int> Commit(CancellationToken cancellationToken);

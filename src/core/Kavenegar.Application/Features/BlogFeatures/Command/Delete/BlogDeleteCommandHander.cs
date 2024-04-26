@@ -9,11 +9,11 @@ namespace Kavenegar.Application.Features.BlogFeatures.Command.Delete
 {
     public class BlogDeleteCommandHander : ICommandHandler<BlogDeleteCommand, Unit>
     {
-        private readonly IUnitOfWork<BLog> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ICurrentUserService _currentUserService;
         private readonly IBlogRepository _blogRepository;
 
-        public BlogDeleteCommandHander(IUnitOfWork<BLog> unitOfWork, ICurrentUserService currentUserService, IBlogRepository blogRepository)
+        public BlogDeleteCommandHander(IUnitOfWork unitOfWork, ICurrentUserService currentUserService, IBlogRepository blogRepository)
         {
             _unitOfWork = unitOfWork;
             _currentUserService = currentUserService;

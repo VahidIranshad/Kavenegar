@@ -12,14 +12,14 @@ namespace Kavenegar.Application.Features.BlogFeatures.Command.Update
 {
     public class BlogUpdateCommandHandler : ICommandHandler<BlogUpdateCommand, Unit>
     {
-        private readonly IUnitOfWork<BLog> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ICurrentUserService _currentUserService;
         private readonly IValidator<BlogCrudDto> _validator;
         private readonly IBlogRepository _blogRepository;
 
         public BlogUpdateCommandHandler(
-            IUnitOfWork<BLog> unitOfWork,
+            IUnitOfWork unitOfWork,
             IMapper mapper,
             ICurrentUserService currentUserService,
             IValidator<BlogCrudDto> validator,

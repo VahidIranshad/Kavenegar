@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="34.0.1" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\infrastructure\Kavenegar.Infrastructure\Kavenegar.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>

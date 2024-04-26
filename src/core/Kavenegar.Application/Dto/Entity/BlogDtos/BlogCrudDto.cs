@@ -7,7 +7,7 @@ namespace Kavenegar.Application.Dto.Entity.BlogDtos
     {
         public int Id { get; set; }
         [DefaultValue(Domain.Const.UserConst.Admin_Id)]
-        public int AuthorId { get; set; }
+        public  int AuthorId { get; set; }
         public required string Title { get; set; }
         public required string Content { get; set; }
     }

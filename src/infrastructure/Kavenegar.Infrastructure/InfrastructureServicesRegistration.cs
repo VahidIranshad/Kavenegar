@@ -19,7 +19,7 @@ namespace Kavenegar.Infrastructure
                ServiceLifetime.Scoped
                );
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICacheService, CacheService>();
