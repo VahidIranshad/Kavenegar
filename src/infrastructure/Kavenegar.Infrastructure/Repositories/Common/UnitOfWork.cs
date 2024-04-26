@@ -11,29 +11,11 @@ namespace Kavenegar.Infrastructure.Repositories.Common
     {
 
         private readonly KavenegarDbContext _context;
-        private Hashtable _repositories;
 
 
         public UnitOfWork(KavenegarDbContext context)
         {
             _context = context;
-        }
-        public IGenericRepository<T> Repository()
-        {
-            if (_repositories == null)
-                _repositories = new Hashtable();
-
-            var type = typeof(T).Name;
-
-            if (!_repositories.ContainsKey(type))
-            {
-                var repositoryType = typeof(GenericRepository<>);
-                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _context);
-
-                _repositories.Add(type, repositoryInstance);
-            }
-
-            return (IGenericRepository<T>)_repositories[type];
         }
 
 

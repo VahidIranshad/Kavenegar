@@ -24,7 +24,7 @@ namespace Kavenegar.Infrastructure.Repositories.Common
 
         public async Task<IReadOnlyList<T>> GetAll()
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
         public async Task<IReadOnlyList<T>> Get(Expression<Func<T, bool>> predicate = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
@@ -32,14 +32,24 @@ namespace Kavenegar.Infrastructure.Repositories.Common
             IQueryable<T> query = _dbContext.Set<T>();
             if (orderBy != null)
             {
-                return await orderBy(query).ToListAsync();
+                return await orderBy(query).AsNoTracking().ToListAsync();
             }
-            return await query.ToListAsync();
+            return await query.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<T> Find(int id)
+        {
+            var data = await _dbContext.Set<T>().FirstOrDefaultAsync(p => p.Id == id);
+            if (data != null)
+            {
+                return data;
+            }
+            throw new NotFoundException(typeof(T).Name, id);
         }
 
         public async Task<T> Get(int id)
         {
-            var data = await _dbContext.Set<T>().FirstOrDefaultAsync(p => p.Id == id);
+            var data = await _dbContext.Set<T>().AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
             if (data != null)
             {
                 return data;

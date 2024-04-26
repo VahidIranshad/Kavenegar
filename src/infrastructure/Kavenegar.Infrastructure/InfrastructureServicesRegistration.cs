@@ -7,7 +7,6 @@ using Kavenegar.Infrastructure.DbContexts;
 using Kavenegar.Infrastructure.Repositories.Common;
 using Kavenegar.Application.Contracts.Entity;
 using Kavenegar.Infrastructure.Repositories.Entity;
-using Kavenegar.Infrastructure.Helper;
 
 namespace Kavenegar.Infrastructure
 {
@@ -23,7 +22,8 @@ namespace Kavenegar.Infrastructure
             services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddSingleton<RedisConnectionHelper>();
+            services.AddScoped<ICacheService, CacheService>();
+
 
             return services;
         }

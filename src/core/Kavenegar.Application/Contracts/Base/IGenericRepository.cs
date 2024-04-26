@@ -7,6 +7,7 @@ namespace Kavenegar.Application.Contracts.Base
     {
         Task<IReadOnlyList<T>> GetAll();
         Task<T> Get(int id);
+        Task<T> Find(int id);
         Task<IReadOnlyList<T>> Get(Expression<Func<T, bool>> predicate = null,
                                         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
         Task<T> Add(T entity);

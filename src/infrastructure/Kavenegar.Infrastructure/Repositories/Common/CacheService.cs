@@ -1,23 +1,20 @@
 ﻿using Kavenegar.Application.Contracts.Base;
 using Kavenegar.Domain.Base;
-using Kavenegar.Infrastructure.Helper;
+using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using StackExchange.Redis;
 
 namespace Kavenegar.Infrastructure.Repositories.Common
 {
     public class CacheService : ICacheService
     {
-        private IDatabase _db;
-        private readonly RedisConnectionHelper _connectionHelper;
-        public CacheService(RedisConnectionHelper connectionHelper)
+        private readonly IDistributedCache _distributedCache;
+        public CacheService(IDistributedCache distributedCache)
         {
-            _connectionHelper = connectionHelper;
-            _db = connectionHelper.Connection.GetDatabase();
+            _distributedCache = distributedCache;
         }
-        public async Task<T> GetData<T>(int key) 
+        public async Task<T> GetData<T>(int key)
         {
-            var value = await _db.StringGetAsync(typeof(T).Name + key.ToString());
+            var value = await _distributedCache.GetStringAsync(typeof(T).Name + "_" + key.ToString());
             if (string.IsNullOrEmpty(value) == false)
             {
                 return JsonConvert.DeserializeObject<T>(value);
@@ -26,17 +23,13 @@ namespace Kavenegar.Infrastructure.Repositories.Common
         }
         public async Task<bool> SetData<T>(T value) where T : BaseEntity
         {
-            var isSet = await _db.StringSetAsync(typeof(T).Name + value.Id.ToString(), JsonConvert.SerializeObject(value));
-            return isSet;
+            await _distributedCache.SetStringAsync(typeof(T).Name + "_" + value.Id.ToString(), JsonConvert.SerializeObject(value));
+            return true;
         }
         public async Task<bool> RemoveData<T>(int key)
         {
-            bool _isKeyExist = await _db.KeyExistsAsync(typeof(T).Name + key.ToString());
-            if (_isKeyExist == true)
-            {
-                return await _db.KeyDeleteAsync(typeof(T).Name + key.ToString());
-            }
-            return false;
+            await _distributedCache.RemoveAsync(typeof(T).Name + "_" + key.ToString());
+            return true;
         }
     }
 }

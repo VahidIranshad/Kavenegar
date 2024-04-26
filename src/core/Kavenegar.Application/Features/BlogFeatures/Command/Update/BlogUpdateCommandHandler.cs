@@ -2,6 +2,7 @@
 using FluentValidation;
 using Kavenegar.Application.BuildingBlocks.CQRS;
 using Kavenegar.Application.Contracts.Base;
+using Kavenegar.Application.Contracts.Entity;
 using Kavenegar.Application.Dto.Entity.BlogDtos;
 using Kavenegar.Application.Exceptions;
 using Kavenegar.Domain.Entity;
@@ -15,13 +16,20 @@ namespace Kavenegar.Application.Features.BlogFeatures.Command.Update
         private readonly IMapper _mapper;
         private readonly ICurrentUserService _currentUserService;
         private readonly IValidator<BlogCrudDto> _validator;
+        private readonly IBlogRepository _blogRepository;
 
-        public BlogUpdateCommandHandler(IUnitOfWork<BLog> unitOfWork, IMapper mapper, ICurrentUserService currentUserService, IValidator<BlogCrudDto> validator)
+        public BlogUpdateCommandHandler(
+            IUnitOfWork<BLog> unitOfWork,
+            IMapper mapper,
+            ICurrentUserService currentUserService,
+            IValidator<BlogCrudDto> validator,
+            IBlogRepository blogRepository)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _currentUserService = currentUserService;
             _validator = validator;
+            _blogRepository = blogRepository;
         }
 
 
@@ -37,16 +45,15 @@ namespace Kavenegar.Application.Features.BlogFeatures.Command.Update
                 }
             }
 
-            var data = await _unitOfWork.Repository().Get(request.blogCrudDto.Id);
+            var data = await _blogRepository.Find(request.blogCrudDto.Id);
             if (data == null)
             {
                 throw new NotFoundException(nameof(BLog), request.blogCrudDto.Id);
             }
 
-            //var data = _mapper.Map<BLog>(request.blogCrudDto);
             _mapper.Map(request.blogCrudDto, data);
 
-            await _unitOfWork.Repository().Update(data);
+            await _blogRepository.Update(data);
             await _unitOfWork.SaveChangesAsync(_currentUserService);
             return Unit.Value;
         }

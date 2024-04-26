@@ -1,6 +1,8 @@
 ﻿using Kavenegar.Application.Contracts.Base;
 using Kavenegar.Application.Contracts.Entity;
 using Kavenegar.Domain.Entity;
+using Microsoft.VisualBasic;
+using StackExchange.Redis;
 using System.Linq.Expressions;
 
 namespace Kavenegar.Infrastructure.Repositories.Entity
@@ -18,9 +20,17 @@ namespace Kavenegar.Infrastructure.Repositories.Entity
 
         public async Task<BLog> Add(BLog entity) => await _decorated.Add(entity);
 
-        public async Task Delete(BLog entity) => await _decorated.Delete(entity);
+        public async Task Delete(BLog entity)
+        {
+            await _decorated.Delete(entity);
+            await _cacheService.RemoveData<BLog>(entity.Id);
+        }
 
-        public async Task Update(BLog entity) => await _decorated.Delete(entity);
+        public async Task Update(BLog entity)
+        {
+            await _decorated.Update(entity);
+            await _cacheService.RemoveData<BLog>(entity.Id);
+        }
 
         public async Task<bool> Exists(int id)
         {
@@ -34,7 +44,7 @@ namespace Kavenegar.Infrastructure.Repositories.Entity
 
         public async Task<BLog> Get(int id)
         {
-            
+
             var result = await _cacheService.GetData<BLog>(id);
             if (result == null)
             {
@@ -52,9 +62,11 @@ namespace Kavenegar.Infrastructure.Repositories.Entity
             return await _decorated.Get(predicate, orderBy);
         }
 
-        public async Task<IReadOnlyList<BLog>> GetAll()
+        public async Task<IReadOnlyList<BLog>> GetAll() => await _decorated.GetAll();
+
+        public async Task<BLog> Find(int id)
         {
-            return await _decorated.GetAll();
+            return await _decorated.Find(id);
         }
 
 

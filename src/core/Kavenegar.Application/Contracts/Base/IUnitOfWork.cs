@@ -7,8 +7,6 @@ namespace Kavenegar.Application.Contracts.Base
         where T : BaseEntity
     {
 
-        IGenericRepository<T> Repository();
-
         Task<int> Commit(CancellationToken cancellationToken);
 
         Task<int> CommitAndRemoveCache(CancellationToken cancellationToken, params string[] cacheKeys);
